@@ -55,7 +55,7 @@ export function Search({ isMobile }: ISearch) {
     useEffect(() => {
         setFocused(false);
         setResults([]);
-      }, [pathname]);
+    }, [pathname]);
 
     const clearSearch = () => {
         setQuery("");
@@ -106,12 +106,12 @@ export function Search({ isMobile }: ISearch) {
                 </form>
 
                 {focused && results.length > 0 && (
-                    <ul  className="absolute top-full left-0 right-0 bg-white dark:bg-gray-800 shadow-md max-h-[320px] overflow-y-auto rounded z-50 mt-1">
+                    <ul className="absolute top-full left-0 right-0 bg-white dark:bg-gray-800 shadow-md max-h-[320px] overflow-y-auto rounded z-50 mt-1">
                         {results.map((p) => (
                             <li key={p.id}>
                                 <Link
                                     href={`/products/${p.id}`}
-                                    className={cn("flex items-center gap-2 px-3 py-2 text-black dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700" , {
+                                    className={cn("flex items-center gap-2 px-3 py-2 text-black dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700", {
                                         "py-5": isMobile
                                     })}
                                     onClick={() => setResults([])}
@@ -136,7 +136,7 @@ export function Search({ isMobile }: ISearch) {
                                 onClick={handleSubmit}
                                 className=" block w-full text-left cursor-pointer px-3 py-2 text-sm text-blue-600 dark:text-blue-400 hover:bg-gray-100 dark:hover:bg-gray-700"
                             >
-                                See all results for '{query}'
+                                See all results for &quot;{query}&quot;
                             </Link>
                         </li>
                     </ul>
