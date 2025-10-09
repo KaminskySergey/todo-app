@@ -3,7 +3,6 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import StoreProvider from "../redux/StoreProvider";
 import '@smastrom/react-rating/style.css'
-import Loader from "@/components/ui/ProgressBar";
 import SessionWrapper from "@/components/Session";
 
 
@@ -37,7 +36,6 @@ export default function RootLayout({
           className={`${geistSans.variable} ${geistMono.variable} antialiased`}
         >
 
-          <Loader />
           <StoreProvider>
             {children}
           </StoreProvider>

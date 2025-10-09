@@ -1,4 +1,4 @@
-
+'use client'
 
 import { Dispatch, SetStateAction, useEffect } from "react";
 import { X, Funnel, BrushCleaning } from "lucide-react";
