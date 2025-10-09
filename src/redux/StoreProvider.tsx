@@ -7,6 +7,11 @@ import { CartProvider } from './CartProvider'
 import { SidebarProvider } from '@/app/context/SidebarProvider'
 import SidebarCart from '@/components/common/SidebarCart'
 import ToasterProvider from '@/components/common/ToasterProvider'
+import { useSession } from 'next-auth/react'
+import { useAppDispatch } from './hooks'
+import { useEffect } from 'react'
+import { removeAllCart } from './cart/cartSlice'
+import { removeAllWishlist } from './wishlist/wishlistSlice'
 
 
 
@@ -15,7 +20,16 @@ function WrapperLayout({
 }: {
   children: React.ReactNode
 }) {
+  const { data: session } = useSession();
+  const dispatch = useAppDispatch();
 
+  useEffect(() => {
+    if (!session) {
+      dispatch(removeAllCart());
+      dispatch(removeAllWishlist());
+      
+    }
+  }, [session, dispatch]);
 
 
   return (

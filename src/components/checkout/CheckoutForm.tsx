@@ -5,12 +5,17 @@ import { checkoutAction } from "../../../actions/checkoutAction"
 import { FormEvent, useState } from "react"
 import { IAddress } from "@/types/address"
 import { MapPin, XCircle } from "lucide-react"
+import { useAppSelector } from "@/redux/store"
+import { selectCartItems } from "@/redux/cart/selectors"
+import toast from "react-hot-toast"
 
 interface ICheckoutForm {
     savedAddress: IAddress | null
 }
 
 export function CheckoutForm({ savedAddress }: ICheckoutForm) {
+    const cartItems = useAppSelector(selectCartItems)
+
     const [loading, setLoading] = useState(false)
     const [isToggle, setIsToggle] = useState(false)
     const [error, setError] = useState('')
@@ -61,13 +66,12 @@ export function CheckoutForm({ savedAddress }: ICheckoutForm) {
         setError('')
 
         const formData = new FormData(e.currentTarget)
-
         try {
             const checkoutUrl = await checkoutAction(formData)
+            toast.success("Order created successfully!");
             window.location.href = checkoutUrl
         } catch (err: any) {
-            console.error(err)
-            setError(err.message || 'Something went wrong')
+            toast.error(err.message || "Something went wrong");
             setLoading(false)
         }
     }
@@ -76,28 +80,28 @@ export function CheckoutForm({ savedAddress }: ICheckoutForm) {
         <form onSubmit={handleSubmit} className="flex flex-col gap-4">
             {savedAddress && (
                 <button
-                  type="button"
-                  onClick={handleToggleAddress}
-                  className={`self-end mb-2 flex cursor-pointer items-center gap-2 text-sm font-medium 
+                    type="button"
+                    onClick={handleToggleAddress}
+                    className={`self-end mb-2 flex cursor-pointer items-center gap-2 text-sm font-medium 
                   transition-all duration-300 
                   ${isToggle
-                    ? "text-red-600 hover:text-red-800 dark:text-red-400 dark:hover:text-red-300"
-                    : "text-blue-600 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-300"
-                  }`}
+                            ? "text-red-600 hover:text-red-800 dark:text-red-400 dark:hover:text-red-300"
+                            : "text-blue-600 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-300"
+                        }`}
                 >
-                  {isToggle ? (
-                    <>
-                      <XCircle size={18} />
-                      Clear address
-                    </>
-                  ) : (
-                    <>
-                      <MapPin size={18} />
-                      Use saved address
-                    </>
-                  )}
+                    {isToggle ? (
+                        <>
+                            <XCircle size={18} />
+                            Clear address
+                        </>
+                    ) : (
+                        <>
+                            <MapPin size={18} />
+                            Use saved address
+                        </>
+                    )}
                 </button>
-              )}
+            )}
 
             {/* Name */}
             <input
@@ -171,7 +175,7 @@ export function CheckoutForm({ savedAddress }: ICheckoutForm) {
                 className="rounded-full border border-gray-300 dark:border-gray-600 px-3 py-3 bg-gray-50 dark:bg-gray-700 
                        text-black dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
-
+            <input type="hidden" name="items" value={JSON.stringify(cartItems)} />
             {error && <p className="text-red-500 text-sm">{error}</p>}
 
             <button

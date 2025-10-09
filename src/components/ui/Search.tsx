@@ -7,9 +7,9 @@ import debounce from "lodash/debounce";
 import Link from 'next/link'
 import Image from 'next/image'
 import { IProduct } from "@/types/products";
-import { getProducts } from "@/app/(content)/products/page";
 import { useClickOutside } from "@/hooks/useClickOutside";
 import { cn } from "@/utils/utils";
+import { getProducts } from "../../../actions/products";
 interface ISearch { isMobile?: boolean }
 
 export function Search({ isMobile }: ISearch) {

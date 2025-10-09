@@ -4,8 +4,8 @@ import prisma from "../lib/prisma";
 import { stripe } from "../lib/stripi";
 import { redirect } from "next/navigation";
 import { getServerSession } from "next-auth";
-import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 import { Prisma } from "@prisma/client";
+import { authOptions } from "@/app/lib/authOptions";
 
 export const checkoutAction = async (formData: FormData) => {
   const authSession = await getServerSession(authOptions);
@@ -22,7 +22,7 @@ export const checkoutAction = async (formData: FormData) => {
   const city = formData.get("city") as string;
   const zip = formData.get("zip") as string;
   const country = formData.get("country") as string;
-
+console.log(name, email, phone, itemsJson, '4444444444444444444444444444444444444444444')
   if (!name || !email || !phone || !itemsJson) {
     throw new Error("Missing fields");
   }
