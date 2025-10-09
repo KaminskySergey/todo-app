@@ -9,9 +9,8 @@ import { NoItemCart } from "./NoItemCart";
 import { selectTotalPrice } from "@/redux/cart/selectors";
 import Link from "next/link";
 import { Breadcrumb } from "../ui/Breadcrumb";
-interface ICartComponent { }
 
-export function CartComponent({ }: ICartComponent) {
+export function CartComponent() {
     const cartItems = useAppSelector((state) => state.cart.items);
     const dispatch = useAppDispatch()
     const totalPrice = useAppSelector(selectTotalPrice)

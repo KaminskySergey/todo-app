@@ -112,10 +112,10 @@ export async function POST(req: Request) {
       message: "Order created successfully",
       order,
     });
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error(error);
     return NextResponse.json(
-      { error: error.message || "Failed to create order" },
+      { error: error || "Failed to create order" },
       { status: 500 }
     );
   }

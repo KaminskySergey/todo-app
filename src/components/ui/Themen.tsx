@@ -4,9 +4,8 @@ import { cn } from "@/utils/utils";
 import { Moon, Sun } from "lucide-react"
 import { useTheme } from "next-themes"
 import { useEffect, useState } from "react"
-interface Props { }
 
-export function ThemeSwitcher({ }: Props) {
+export function ThemeSwitcher() {
     const [mounted, setMounted] = useState(false);
     const { setTheme, resolvedTheme } = useTheme();
 

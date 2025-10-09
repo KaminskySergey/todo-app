@@ -136,7 +136,7 @@ export function Search({ isMobile }: ISearch) {
                                 onClick={handleSubmit}
                                 className=" block w-full text-left cursor-pointer px-3 py-2 text-sm text-blue-600 dark:text-blue-400 hover:bg-gray-100 dark:hover:bg-gray-700"
                             >
-                                See all results for "{query}"
+                                See all results for '{query}'
                             </Link>
                         </li>
                     </ul>

@@ -67,18 +67,18 @@ export default function SignInForm() {
                 router.push("/")
                 router.refresh()
             }
-        } catch (err: any) {
-            if (err.name === "ValidationError") {
-                const newErrors: Errors = {}
-                err.inner.forEach((e: any) => {
-                    if (e.path) newErrors[e.path as keyof Errors] = e.message
-                })
-                setErrors(newErrors)
+        } catch (err) {
+            if (err instanceof yup.ValidationError) {
+              const newErrors: Errors = {};
+              err.inner.forEach((e) => {
+                if (e.path) newErrors[e.path as keyof Errors] = e.message;
+              });
+              setErrors(newErrors);
             } else {
-                console.error(err)
-                toast.error("Something went wrong")
+              console.error(err);
+              toast.error("Something went wrong");
             }
-        } finally {
+          } finally {
             setLoading(false)
         }
     }

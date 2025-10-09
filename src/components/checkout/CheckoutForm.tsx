@@ -70,8 +70,8 @@ export function CheckoutForm({ savedAddress }: ICheckoutForm) {
             const checkoutUrl = await checkoutAction(formData)
             toast.success("Order created successfully!");
             window.location.href = checkoutUrl
-        } catch (err: any) {
-            toast.error(err.message || "Something went wrong");
+        } catch (err) {
+            toast.error("Something went wrong");
             setLoading(false)
         }
     }
