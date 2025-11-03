@@ -1,6 +1,6 @@
 'use client';
 
-import React, { Dispatch, SetStateAction, useEffect, useRef } from 'react';
+import React, { Dispatch, SetStateAction, useRef } from 'react';
 import Avatar from './Avatar';
 import { useClickOutside } from '@/hooks/useClickOutside';
 import { X } from 'lucide-react'

@@ -1,20 +1,29 @@
 'use client';
 
 import { ITodo } from '@/types/todos';
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef } from 'react';
 import FullCalendar from "@fullcalendar/react";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import { useSidebarContext } from '@/app/context/SidebarProvider';
 import { Priority } from '@prisma/client';
-import { CalendarOptions, EventClickArg } from '@fullcalendar/core/index.js';
+import { EventClickArg } from '@fullcalendar/core/index.js';
 import interactionPlugin, { DateClickArg } from '@fullcalendar/interaction';
 import { useParams, useRouter } from 'next/navigation';
-import { addMonths, subMonths, format, startOfMonth } from "date-fns";
-import Link from 'next/link';
+import {  startOfMonth } from "date-fns";
 import CalendarNavigation from './CalendarNavigation';
 // import '@fullcalendar/common';
 // import '@fullcalendar/daygrid';
 // import '@fullcalendar/react';
+
+interface IGroupedEvent {
+    title: string;
+    start: string;
+    extendedProps: {
+      priority: string;
+      count: number;
+    };
+  }
+
 interface ICalendarComponent {
     todos: ITodo[]
 }
@@ -63,7 +72,7 @@ export default function CalendarComponent({ todos, }: ICalendarComponent) {
             }
 
             return acc;
-        }, {} as Record<string, any>)
+        }, {} as Record<string, IGroupedEvent>)
     );
 
     const handleDayClick = (dateStr: string) => {

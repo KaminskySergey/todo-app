@@ -1,4 +1,3 @@
-import { Container } from "@/components/ui/Container";
 import Header from "@/components/ui/Header";
 import SideBar from "@/components/ui/Sidebar";
 import { ReactNode } from "react";
@@ -7,7 +6,7 @@ import { redirect } from "next/navigation";
 
 export default async function DashboardLayout({ children }: { children: ReactNode }) {
   const session = await auth();
-    // if (!session) redirect("/auth/signin");
+    if (!session) redirect("/auth/signin");
   return (
     <div className="flex h-screen relative bg-gray-200">
       <SideBar />

@@ -1,7 +1,7 @@
 'use client';
 
-import { ITodo, ITodoCreate } from '@/types/todos';
-import { cn, formatTimeForForm, parseFormTimeToDate } from '@/utils/utils';
+import {  ITodoCreate } from '@/types/todos';
+import { cn, formatTimeForForm } from '@/utils/utils';
 import { todoFormSchema } from '@/utils/zod';
 import React, { ChangeEvent, FormEvent, useState } from 'react';
 import z from 'zod';
@@ -74,7 +74,7 @@ export default function TodoForm({ initialState, status, onCreate, handleToggle,
             
             const [startHour, startMinute] = validatedData.startTime.split(":").map(Number);
             const [endHour, endMinute] = validatedData.endTime.split(":").map(Number);
-            let baseDate = parse(date, "yyyy-MM-dd", new Date());
+            const baseDate = parse(date, "yyyy-MM-dd", new Date());
             const formattedStart = setHours(setMinutes(baseDate, startMinute), startHour);
             const formattedEnd = setHours(setMinutes(baseDate, endMinute), endHour);
             const todo = {

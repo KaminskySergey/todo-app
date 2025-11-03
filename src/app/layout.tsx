@@ -3,7 +3,6 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import '@smastrom/react-rating/style.css'
 import MainProvider from "@/providers/MainProvider";
-import SideBar from "@/components/ui/Sidebar";
 
 
 const geistSans = Geist({

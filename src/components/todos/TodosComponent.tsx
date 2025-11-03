@@ -6,7 +6,7 @@ import { ITodo, ITodoCreate, } from '@/types/todos';
 import { Status } from '@prisma/client';
 import { changeStatusTodo, createTodo, deleteTodo, editTodo } from '../../../actions/todos';
 import toast from 'react-hot-toast';
-import { addDays, format } from 'date-fns';
+// import { addDays, format } from 'date-fns';
 import { useParams } from 'next/navigation';
 import WeeksComponent from './WeeksComponent';
 // export const data: ITodo[] = [
@@ -81,22 +81,22 @@ interface ITodosComponent {
     todos: ITodo[]
 }
 
-function getWeekDays(date: string) {
-    const weekDays = [];
-    const centerDate = new Date(date)
-    for (let i = -3; i <= 3; i++) {
-        const date = addDays(centerDate, i);
-        weekDays.push({
-            date,
-            day: format(date, "d"),
-            month: format(date, "LLLL"),
-            weekday: format(date, "EEEE"),
-            isToday: i === 0,
-        });
-    }
+// function getWeekDays(date: string) {
+//     const weekDays = [];
+//     const centerDate = new Date(date)
+//     for (let i = -3; i <= 3; i++) {
+//         const date = addDays(centerDate, i);
+//         weekDays.push({
+//             date,
+//             day: format(date, "d"),
+//             month: format(date, "LLLL"),
+//             weekday: format(date, "EEEE"),
+//             isToday: i === 0,
+//         });
+//     }
 
-    return weekDays;
-}
+//     return weekDays;
+// }
 export default function TodosComponent({ todos }: ITodosComponent) {
     const [todoList, setTodoList] = useState(todos)
     const { date }: { date: string } = useParams()
@@ -150,7 +150,7 @@ export default function TodosComponent({ todos }: ITodosComponent) {
             toast.error("Failed to create task");
         }
     }
-    const days = getWeekDays(date);
+    // const days = getWeekDays(date);
     return (
         <div className="text-black p-6 max-w-[1440px]  w-full flex flex-col gap-5 gradient">
             <WeeksComponent />

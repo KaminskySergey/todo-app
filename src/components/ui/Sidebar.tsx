@@ -5,34 +5,33 @@ import { cn } from '@/utils/utils';
 import React  from 'react';
 import { ListTodo, CalendarCheck2, Settings, UserRound, Menu, ChevronRight, LogOut } from 'lucide-react'
 import ItemNavigation from './ItemNavigation';
-import Image from 'next/image';
 import { signOut } from 'next-auth/react';
 import LogoIcon from '../icons/LogoIcon';
 import Link from 'next/link';
 
 
-const navigation = [
-    {
-        href: '/dashboard/todos',
-        link: 'Todos',
-        icon: <ListTodo />
-    },
-    {
-        href: '/dashboard/calendar',
-        link: 'Calendar',
-        icon: <CalendarCheck2 />
-    },
-    {
-        href: '/dashboard/settings',
-        link: 'Settings',
-        icon: <Settings />
-    },
-    {
-        href: '/dashboard/profile',
-        link: 'Profile',
-        icon: <UserRound />
-    },
-]
+// const navigation = [
+//     {
+//         href: '/dashboard/todos',
+//         link: 'Todos',
+//         icon: <ListTodo />
+//     },
+//     {
+//         href: '/dashboard/calendar',
+//         link: 'Calendar',
+//         icon: <CalendarCheck2 />
+//     },
+//     {
+//         href: '/dashboard/settings',
+//         link: 'Settings',
+//         icon: <Settings />
+//     },
+//     {
+//         href: '/dashboard/profile',
+//         link: 'Profile',
+//         icon: <UserRound />
+//     },
+// ]
 
 export default function SideBar() {
     const { isSidebarOpen, openSidebar, closeSidebar } = useSidebarContext()
