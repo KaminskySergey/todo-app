@@ -5,7 +5,7 @@ import SignUpForm from './SignUpForm';
 
 export default function SignUpComponent() {
   return (
-    <div className='gradient'>
+    <div className='gradient flex items-center justify-center'>
       <SignUpForm />
     </div>
   );
