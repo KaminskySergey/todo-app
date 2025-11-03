@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import StoreProvider from "../redux/StoreProvider";
 import '@smastrom/react-rating/style.css'
-import SessionWrapper from "@/components/Session";
+import MainProvider from "@/providers/MainProvider";
+import SideBar from "@/components/ui/Sidebar";
 
 
 const geistSans = Geist({
@@ -28,19 +28,16 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <SessionWrapper>
 
-      <html lang="en" suppressHydrationWarning>
+    <html lang="en" suppressHydrationWarning>
 
-        <body
-          className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-        >
-
-          <StoreProvider>
-            {children}
-          </StoreProvider>
-        </body>
-      </html>
-    </SessionWrapper>
+      <body
+        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+      >
+        <MainProvider>
+          {children}
+        </MainProvider>
+      </body>
+    </html>
   );
 }

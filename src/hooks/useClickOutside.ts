@@ -7,18 +7,16 @@ export function useClickOutside<T extends HTMLElement>(
 ) {
   useEffect(() => {
     if (!active) return;
-
-    const handleClick = (e: MouseEvent) => {
+    const handleClickOutside = (e: MouseEvent) => {
       if (!(e.target instanceof Element)) return;
-      if (ref.current && !ref.current.contains(e.target)) {
-        callback();
+      if (e.target && !ref.current.contains(e.target)){
+        callback()
       }
     };
-
-    document.addEventListener("mousedown", handleClick);
-
+    // ref.current && !ref.current.contains(e.target)
+    document.addEventListener("mousedown", handleClickOutside);
     return () => {
-      document.removeEventListener("mousedown", handleClick);
+      document.removeEventListener("mousedown", handleClickOutside);
     };
   }, [ref, callback, active]);
 }

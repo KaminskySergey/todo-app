@@ -5,8 +5,8 @@ import React from 'react';
 export function GoogleIcon() {
     return (
         <svg
-            width="20"
-            height="20"
+            width="24"
+            height="24"
             viewBox="0 0 20 20"
             fill="none"
         >

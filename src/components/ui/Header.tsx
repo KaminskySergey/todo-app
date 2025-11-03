@@ -1,51 +1,46 @@
-'use client'
+'use client';
 
-import Image from "next/image"
-import { Container } from "./Container"
-import { Navigation } from "./Navigation"
-import Link from "next/link"
-import { Search } from "./Search"
-import { DropdownNav } from "./DropdownNav"
+import React, { useState } from 'react';
+import { Container } from './Container';
+import Avatar from '../header/Avatar';
+import { usePathname } from 'next/navigation';
+import ModalAvatar from '../header/ModalAvatar';
+import { ThemeSwitcher } from './ThemeSwitcher';
 
-
-export function Header() {
-
+export default function Header() {
+    const pathname = usePathname()
+    const [isOpen, setIsOpen] = useState(false)
+    const handleToggle = () => {
+        setIsOpen(pS => !pS)
+    }
+    const title = pathname.split('/')[2]
+    
+    const formattedTitle = title.charAt(0).toUpperCase() + title.slice(1)
     return (
-        <header className="w-full  sticky top-0 z-70 flex flex-col items-center text-white  bg-gray-800  border-b border-b-white/10 ">
-            <Container className="flex items-center  justify-between gap-1 md:gap-6 w-full ">
-                <div className="flex items-center gap-5 w-full">
-                    <Link href={'/'}>
-                        <div className="relative h-[64px] w-[124px] md:w-[164px]">
-                            <Image
-                                src={'/mira-logo.png'}
-                                fill
-                                alt="logo"
-                                sizes="48"
-                                className="object-cover"
-                            />
-                        </div>
-                    </Link>
-                    <div className="flex items-center gap-4">
-                        <div className="hidden md:block">
-                            <DropdownNav />
-                        </div>
-                        <div className="hidden lg:block">
-                            <Search />
-                        </div>
-                    </div>
+        <header className='sticky top-0 left-0 z-10 bg-white dark:bg-[#101828] transition-width duration-300 ease-in-out h-[64px] w-full shadow-md'>
+            <Container className='flex items-center justify-between h-[64px] max-w-full'>
+                <div>
+                    <h1 className='text-xl font-bold'>
+                        {formattedTitle}
+                    </h1>
                 </div>
+                <div className='flex relative items-center gap-4'>
+                    <ThemeSwitcher />
+                    <Avatar handleToggle={handleToggle}/>
+                    {/* <div>
+        <Image 
+        width={32}
+        height={32}
+        alt='avatar'
+        src={''}
+        />
+    </div> */}
 
 
-                <Navigation />
-
-
-            </Container>
-            <Container className="py-4 block lg:hidden">
-                <div >
-                    <Search isMobile />
+                    {isOpen && <ModalAvatar  setIsOpen={setIsOpen} isOpen={isOpen}/>}
                 </div>
             </Container>
 
         </header>
-    )
+    );
 }
