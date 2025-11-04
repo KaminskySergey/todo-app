@@ -56,7 +56,6 @@ export default function SignInForm() {
                 toast.error(result.error)
             } else {
                 toast.success("Successfully signed in!")
-                await new Promise((res) => setTimeout(res, 500));
                 router.push("/dashboard/todos");
                 router.refresh()
             }
