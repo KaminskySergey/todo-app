@@ -77,7 +77,7 @@ export default function SignUpForm() {
 
             // 4️⃣ Redirect to dashboard
             toast.success("Login successful! Redirecting to dashboard...");
-            router.push("/dashboard")
+            router.push("/dashboard/todos")
             router.refresh()
 
         } catch (err) {
