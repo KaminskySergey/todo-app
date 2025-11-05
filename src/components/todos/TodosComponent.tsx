@@ -152,13 +152,16 @@ export default function TodosComponent({ todos }: ITodosComponent) {
     }
     // const days = getWeekDays(date);
     return (
-        <div className="text-black p-6 max-w-[1440px]  w-full flex flex-col gap-5 gradient">
+        <div className='flex-1 flex gradient'>
+
+        <div className="text-black p-6 max-w-[1440px]  w-full flex flex-col gap-5">
             <WeeksComponent />
             <div className='flex gap-5 flex-1 justify-stretch items-start'>
                 <ColumnContainer status={Status.TODO} onCreate={handleCreateTodo} onEdit={handleEditTodo} onDelete={handleDelete} onChange={handleChangeStatus} title="To Do" todos={todosTodo} />
                 <ColumnContainer status={Status.IN_PROGRESS} onCreate={handleCreateTodo} onEdit={handleEditTodo} onDelete={handleDelete} onChange={handleChangeStatus} title="In Progress" todos={todosInProgress} />
                 <ColumnContainer status={Status.DONE} onCreate={handleCreateTodo} onEdit={handleEditTodo} onDelete={handleDelete} onChange={handleChangeStatus} title="Done" todos={todosDone} />
             </div>
+        </div>
         </div>
     );
 }

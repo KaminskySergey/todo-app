@@ -9,7 +9,7 @@ import { Priority } from '@prisma/client';
 import { EventClickArg } from '@fullcalendar/core/index.js';
 import interactionPlugin, { DateClickArg } from '@fullcalendar/interaction';
 import { useParams, useRouter } from 'next/navigation';
-import {  startOfMonth } from "date-fns";
+import { startOfMonth } from "date-fns";
 import CalendarNavigation from './CalendarNavigation';
 // import '@fullcalendar/common';
 // import '@fullcalendar/daygrid';
@@ -19,10 +19,10 @@ interface IGroupedEvent {
     title: string;
     start: string;
     extendedProps: {
-      priority: string;
-      count: number;
+        priority: string;
+        count: number;
     };
-  }
+}
 
 interface ICalendarComponent {
     todos: ITodo[]
@@ -81,42 +81,45 @@ export default function CalendarComponent({ todos, }: ICalendarComponent) {
 
 
     return (
-        <div className="text-black w-full h-screen p-6">
-            <CalendarNavigation currentMonth={currentMonth} />
-            
-            <FullCalendar
-                plugins={[dayGridPlugin, interactionPlugin]}
-                initialView="dayGridMonth"
-                initialDate={currentMonth}
-                headerToolbar={false}
-                events={groupedEvents}
-                eventClick={(arg: EventClickArg) => {
-                    handleDayClick(arg.event.startStr);
-                }}
+        <div className='bg-[#EAEAEA] dark:bg-gray-800'>
 
-                dateClick={(arg: DateClickArg) => {
-                    handleDayClick(arg.dateStr);
-                }}
+            <div className="text-black w-full max-w-[1440px] h-screen p-6">
+                <CalendarNavigation currentMonth={currentMonth} />
 
-                eventContent={(arg) => {
-                    const color =
-                        arg.event.extendedProps.priority === Priority.HIGH
-                            ? 'bg-red-500'
-                            : arg.event.extendedProps.priority === Priority.MEDIUM
-                                ? 'bg-yellow-500'
-                                : 'bg-green-500';
+                <FullCalendar
+                    plugins={[dayGridPlugin, interactionPlugin]}
+                    initialView="dayGridMonth"
+                    initialDate={currentMonth}
+                    headerToolbar={false}
+                    events={groupedEvents}
+                    eventClick={(arg: EventClickArg) => {
+                        handleDayClick(arg.event.startStr);
+                    }}
 
-                    return (
-                        <div className="flex space-x-1 justify-center items-center w-full h-full">
-                            <div className={`w-5 h-5 flex items-center font-medium justify-center rounded-full ${color}`} title={arg.event.title}>
-                                {arg.event.extendedProps.count || 1}
+                    dateClick={(arg: DateClickArg) => {
+                        handleDayClick(arg.dateStr);
+                    }}
+
+                    eventContent={(arg) => {
+                        const color =
+                            arg.event.extendedProps.priority === Priority.HIGH
+                                ? 'bg-red-500'
+                                : arg.event.extendedProps.priority === Priority.MEDIUM
+                                    ? 'bg-yellow-500'
+                                    : 'bg-green-500';
+
+                        return (
+                            <div className="flex space-x-1 justify-center items-center w-full h-full">
+                                <div className={`w-5 h-5 flex items-center font-medium justify-center rounded-full ${color}`} title={arg.event.title}>
+                                    {arg.event.extendedProps.count || 1}
+                                </div>
                             </div>
-                        </div>
-                    );
-                }}
-                height="100%"
-                contentHeight="auto"
-            />
+                        );
+                    }}
+                    height="100%"
+                    contentHeight="auto"
+                />
+            </div>
         </div>
     );
 }

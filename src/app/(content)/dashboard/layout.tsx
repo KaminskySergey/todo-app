@@ -13,7 +13,7 @@ export default async function DashboardLayout({ children }: { children: ReactNod
 
       <div className="flex flex-1 flex-col relative transition-all duration-300 ease-in-out">
         <Header />
-        <main className="flex-1  max-w-none mx-0 bg-[#EAEAEA] dark:bg-gray-800">
+        <main className="flex-1  max-w-none mx-0 ">
           {children}
         </main>
       </div>

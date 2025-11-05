@@ -5,7 +5,7 @@ import Avatar from './Avatar';
 import { useClickOutside } from '@/hooks/useClickOutside';
 import { X } from 'lucide-react'
 import Link from 'next/link';
-import { signOut } from 'next-auth/react';
+import { signOut, useSession } from 'next-auth/react';
 interface IModalAvatar {
     setIsOpen: Dispatch<SetStateAction<boolean>>,
     isOpen: boolean
@@ -13,7 +13,7 @@ interface IModalAvatar {
 
 export default function ModalAvatar({ setIsOpen, isOpen }: IModalAvatar) {
     const containerRef = useRef<HTMLDivElement>(null)
-
+    const session = useSession()
     useClickOutside(containerRef as React.RefObject<HTMLDivElement>, () => setIsOpen(false), isOpen)
 
     return (
@@ -25,8 +25,8 @@ export default function ModalAvatar({ setIsOpen, isOpen }: IModalAvatar) {
             <div className='absolute top-5 left-3 flex gap-3 text-white'>
                 <Avatar isModal />
                 <div>
-                    <p className='text-lg font-bold'>Serhii Kaminskyi</p>
-                    <p className='text-gray-200 font-medium text-[14px]'>serg@gmail.com</p>
+                    <p className='text-lg font-bold'>{session.data?.user.name}</p>
+                    <p className='text-gray-200 font-medium text-[14px]'>{session.data?.user.email}</p>
                 </div>
             </div>
 

@@ -10,13 +10,15 @@ interface IItemNavigation {
     href: string
     link: string
     icon: ReactElement
-    
+
 }
 
 export default function ItemNavigation({ href, link, icon }: IItemNavigation) {
     const pathname = usePathname()
-    const isActive = pathname.endsWith(href) || (href.startsWith(pathname) && pathname !== "/");
+    const baseHref = href.split("/").slice(0, -1).join("/"); // /dashboard/todos
+    const basePath = pathname.split("/").slice(0, -1).join("/");
     const { isSidebarOpen } = useSidebarContext()
+    const isActive = basePath === baseHref;
     return (
         <li key={link}>
             <Link href={href} key={link} className={cn(

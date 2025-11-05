@@ -36,7 +36,7 @@ export default function ColumnContainer({ title, todos, onDelete, onChange, onEd
                     <button className='transition-colors duration-200 p-1 hover:text-blue-500' type="button" onClick={handleToggle}><AddIcon /></button>
                 </div>
                 <div>
-                    <ul className='flex flex-col gap-4'>
+                    <ul className='flex flex-col gap-4 overflow-y-auto max-h-[50vh] custom-scroll'>
                         {
                             todos.map(el => (
                                 <li key={el.id}>
