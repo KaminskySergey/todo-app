@@ -55,7 +55,7 @@ export default function WeeksComponent() {
 
                             <div
                                 className={cn(
-                                    "flex flex-col items-center justify-center text-sm bg-white text-black dark:text-white dark:bg-[#101828] transition-all duration-200 rounded-xl w-32 py-3 shadow-sm hover:shadow-md hover:scale-[1.03]",
+                                    "flex flex-col items-center justify-center text-sm bg-white text-black dark:text-white dark:bg-[#101828] transition-all duration-200 rounded-xl w-32 py-2 shadow-sm hover:shadow-md hover:scale-[1.03]",
                                     {
                                         "bg-blue-500 text-white dark:text-white dark:bg-blue-600 scale-[1.07]":
                                             d.isToday,

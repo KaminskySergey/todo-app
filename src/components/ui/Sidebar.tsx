@@ -55,10 +55,10 @@ export default function SideBar() {
                 <nav>
                     <ul className='flex flex-col '>
 
-                        <ItemNavigation href={`/dashboard/todos/${today}`} link="Todos"  icon={<ListTodo />} />
-                        <ItemNavigation href={`/dashboard/calendar/${today}`} link="Calendar" icon={<CalendarCheck2 />} />
-                        <ItemNavigation href="/dashboard/settings" link="Settings" icon={<Settings />} />
-                        <ItemNavigation href="/dashboard/profile" link="Profile" icon={<UserRound />} />
+                        <ItemNavigation href={`/todos/${today}`} link="Todos"  icon={<ListTodo />} />
+                        <ItemNavigation href={`/calendar/${today}`} link="Calendar" icon={<CalendarCheck2 />} />
+                        <ItemNavigation href="/settings" link="Settings" icon={<Settings />} />
+                        <ItemNavigation href="/profile" link="Profile" icon={<UserRound />} />
                     </ul>
 
                 </nav>

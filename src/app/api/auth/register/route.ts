@@ -28,7 +28,10 @@ export async function POST(req: Request) {
         name: `${firstName} ${lastName}`,
         email,
         password: hashedPassword,
-        profile: { create: {} },
+        profile: { create: {
+          firstName,
+          lastName,
+        } },
       },
     });
     return NextResponse.json(

@@ -1,4 +1,4 @@
-import  { NextAuthOptions, User } from "next-auth";
+import { NextAuthOptions, User } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 import bcrypt from "bcryptjs";
 import prisma from "../../../lib/prisma";
@@ -76,14 +76,18 @@ export const authOptions: NextAuthOptions = {
         });
 
         if (!existingUser) {
-          // Create new user and profile
+          const [firstName, ...lastNameParts] = (user.name || "").split(" ");
+          const lastName = lastNameParts.join(" ");
           existingUser = await prisma.user.create({
             data: {
               email: user.email,
               name: user.name,
               image: user.image,
               profile: {
-                create: {},
+                create: {
+                  firstName,
+                  lastName,
+                },
               },
             },
           });

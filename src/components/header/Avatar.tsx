@@ -1,11 +1,13 @@
 'use client';
 
 import { cn } from '@/utils/utils';
+import { useSession } from 'next-auth/react';
 import React from 'react';
 
 interface IAvatar {
     handleToggle?: () => void
     isModal?: boolean
+    className?: string
 }
 
 function stringToHslColor(str: string, s = 70, l = 60) {
@@ -17,32 +19,31 @@ function stringToHslColor(str: string, s = 70, l = 60) {
     return `hsl(${h}, ${s}%, ${l}%)`;
 }
 
-export default function Avatar({handleToggle, isModal}: IAvatar) {
-    
-    const name = 'Serhii Kaminskyi'
-    const bgColor = stringToHslColor(name);
-    return (
-        <>
-            {/* <div className='flex relative items-center gap-2'> */}
-                {/* <div>
-        <Image 
-        width={32}
-        height={32}
-        alt='avatar'
-        src={''}
-        />
-    </div> */}
-                <div
-                    className={cn("w-10 h-10 rounded-full cursor-pointer flex items-center justify-center text-white font-medium", {
-                        "w-20 h-20 text-4xl": isModal
-                    })}
-                    style={{ backgroundColor: bgColor }}
-                    onClick={handleToggle}
-                >
-                    {name[0].toUpperCase()}{name.split(' ')[1].charAt(0).toUpperCase()}
-                </div>
+export default function Avatar({ handleToggle, isModal, className }: IAvatar) {
+    const { data: session, status } = useSession()
 
-            {/* </div> */}
-        </>
-    );
+    if (status === "loading" || !session?.user) return null
+
+    const fullName = session.user.name || "User"
+    const nameParts = fullName.trim().split(/\s+/)
+    const initials =
+        nameParts.length > 1
+            ? `${nameParts[0][0]}${nameParts[1][0]}`.toUpperCase()
+            : nameParts[0][0].toUpperCase()
+
+    const bgColor = stringToHslColor(fullName)
+
+    return (
+        <div
+        className={cn(
+            "w-10 h-10 rounded-full cursor-pointer flex items-center justify-center text-white font-medium",
+            { "w-20 h-20 text-4xl": isModal },
+            className
+          )}
+            style={{ backgroundColor: bgColor }}
+            onClick={handleToggle}
+        >
+            {initials}
+        </div>
+    )
 }

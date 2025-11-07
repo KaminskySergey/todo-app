@@ -49,6 +49,7 @@ model Profile {
   firstName String?
   lastName  String?
   bio       String?   @db.Text
+  phone     String?
   avatarUrl String?
   city      String?
   country   String?

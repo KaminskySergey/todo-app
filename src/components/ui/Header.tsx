@@ -16,6 +16,7 @@ export default function Header() {
     const title = pathname.split('/')[2]
     
     const formattedTitle = title.charAt(0).toUpperCase() + title.slice(1)
+    
     return (
         <header className='sticky top-0 left-0 z-10 bg-white dark:bg-[#101828] transition-width duration-300 ease-in-out h-[64px] w-full shadow-md'>
             <Container className='flex items-center justify-between h-[64px] max-w-full'>
