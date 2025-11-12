@@ -44,10 +44,8 @@ export default function SignUpForm() {
         setLoading(true);
 
         try {
-            // 1️⃣ Validate form with Zod
             const res = registerUserSchema.parse(form);
 
-            // 2️⃣ Send to API for registration
             const response = await fetch(`/api/auth/register`, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
@@ -62,7 +60,6 @@ export default function SignUpForm() {
                 return;
             }
 
-            // 3️⃣ Auto login the user right after registration
             const loginResponse = await signIn("credentials", {
                 email: res.email,
                 password: res.password,
@@ -75,7 +72,6 @@ export default function SignUpForm() {
                 return;
             }
 
-            // 4️⃣ Redirect to dashboard
             toast.success("Login successful! Redirecting to dashboard...");
             router.push("/dashboard/todos")
             router.refresh()

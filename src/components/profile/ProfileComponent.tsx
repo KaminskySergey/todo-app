@@ -1,8 +1,7 @@
 'use client';
 
 import React from 'react';
-import AvatarUpdate from './AvatarUpdate';
-import { IProfile, IUser } from '@/types/profile';
+import { IUser } from '@/types/profile';
 import ProfileForm from './ProfileForm';
 
 interface IProfileComponent {

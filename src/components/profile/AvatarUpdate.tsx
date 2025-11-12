@@ -6,7 +6,6 @@ import { useState } from "react";
 import Image from "next/image";
 import { Camera } from 'lucide-react';
 import toast from 'react-hot-toast';
-import AvatarIcon from '../icons/AvatarIcon';
 import Avatar from '../header/Avatar';
 
 interface IAvatarUpdate {
@@ -55,7 +54,6 @@ export default function AvatarUpdate({ currentAvatar }: IAvatarUpdate) {
     };
     return (
         <div className="relative w-48 h-48 group rounded-full overflow-hidden border-4 border-blue-500 shadow-lg">
-            {/* Аватар */}
             {url ?<Image
                 src={url}
                 alt="Avatar"
@@ -74,7 +72,6 @@ export default function AvatarUpdate({ currentAvatar }: IAvatarUpdate) {
                 <p className='text-[10px]'>{uploading ? "Uploading..." : "Change photo"}</p>
             </label>
 
-            {/* Инпут */}
             <input
                 id="avatar-upload"
                 type="file"

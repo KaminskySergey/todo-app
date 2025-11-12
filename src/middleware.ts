@@ -1,7 +1,6 @@
-import { NextRequest, NextResponse } from "next/server";
-import { getToken } from "next-auth/jwt";
+import { NextRequest } from "next/server";
 
-const PUBLIC_PATHS = ["/", "/auth/signin", "/auth/signup"];
+// const PUBLIC_PATHS = ["/", "/auth/signin", "/auth/signup"];
 
 export async function middleware(req: NextRequest) {
   // const path = req.nextUrl.pathname;
@@ -17,5 +16,5 @@ export async function middleware(req: NextRequest) {
 }
 
 export const config = {
-  matcher: ["/dashboard", "/dashboard/:path*"],
+  matcher: ["/dashboard", "/dashboard/:path*", "/changeEmail"],
 };
