@@ -1,8 +1,7 @@
-import { NextRequest } from "next/server";
 
 // const PUBLIC_PATHS = ["/", "/auth/signin", "/auth/signup"];
 
-export async function middleware(req: NextRequest) {
+export async function middleware() {
   // const path = req.nextUrl.pathname;
 
   // if (PUBLIC_PATHS.includes(path)) return NextResponse.next();

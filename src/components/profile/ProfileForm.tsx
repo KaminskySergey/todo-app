@@ -13,7 +13,7 @@ interface IProfileForm {
 }
 export default function ProfileForm({ profile }: IProfileForm) {
     const [loading, setLoading] = useState(false)
-    const [error, setError] = useState("")
+    const [_, setError] = useState("")
     const [isChange, setIsChange] = useState(false)
     const [form, setForm] = useState({
         firstName: profile.profile?.firstName || "",

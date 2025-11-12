@@ -29,9 +29,9 @@ export default function ChangePassword() {
             setCurrentPassword("");
             setNewPassword("");
             setConfirmPassword("");
-        } catch (error: any) {
+        } catch (error) {
             console.error(error);
-            toast.error(error?.message || "Failed to change password.");
+            toast.error("Failed to change password.");
         } finally {
             setIsLoading(false);
         }
