@@ -8,7 +8,7 @@ export default async function DashboardLayout({ children }: { children: ReactNod
   const session = await auth();
     if (!session) redirect("/auth/signin");
   return (
-    <div className="flex h-screen relative bg-gray-200">
+    <div className="flex h-screen relative gradient">
       <SideBar />
 
       <div className="flex flex-1 flex-col relative transition-all duration-300 ease-in-out">
