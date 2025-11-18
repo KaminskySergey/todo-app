@@ -17,6 +17,7 @@ interface IColumnContainer {
     onChange: (id: string, status: Status) => void
     onEdit: (id: string, todo: ITodoCreate) => void
     onCreate: (todo: ITodoCreate) => void
+    
 }
 
 export default function ColumnContainer({ title, todos, onDelete, onChange, onEdit, onCreate, status }: IColumnContainer) {

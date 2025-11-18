@@ -38,7 +38,7 @@ export default function SideBar() {
     const today = new Date().toISOString().slice(0, 10); 
     
     return (
-        <aside className={cn("bg-white dark:bg-[#101828] dark:shadow-[6px_6px_12px_#0a0a0a,_-6px_-6px_12px_#1f2937] shadow-md rounded-br-2xl  flex flex-col justify-between  text-black dark:text-white h-full overflow-hidden transition-width duration-300 ease-in-out px-4 pb-6 pt-3", {
+        <aside className={cn("bg-white dark:bg-[#101828] dark:shadow-[6px_6px_12px_#0a0a0a,_-6px_-6px_12px_#1f2937] hidden  shadow-md rounded-br-2xl  md:flex flex-col justify-between  text-black dark:text-white h-full overflow-hidden transition-width duration-300 ease-in-out px-4 pb-6 pt-3", {
             "w-64": isSidebarOpen,
             "w-[72px]": !isSidebarOpen
         })}>

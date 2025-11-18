@@ -73,8 +73,8 @@ export default function SignInForm() {
     }
 
     return (
-        <div className='bg-white text-black px-4 py-8 rounded-2xl'>
-            <form onSubmit={handleSubmit} className='flex flex-col gap-6 items-center px-12'>
+        <div className='bg-white text-black px-2  md:px-4 py-8 rounded-2xl'>
+            <form onSubmit={handleSubmit} className='flex flex-col gap-6 items-center px-6 md:px-12'>
                 <div className='flex flex-col items-center'>
                     <h1 className='mb-4 text-4xl font-extrabold text-black'>SignIn</h1>
                     <h2 className=" text-lg font-medium text-gray-700">

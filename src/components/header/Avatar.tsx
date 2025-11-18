@@ -2,6 +2,7 @@
 
 import { cn } from '@/utils/utils';
 import { useSession } from 'next-auth/react';
+import Image from 'next/image';
 import React from 'react';
 
 interface IAvatar {
@@ -34,16 +35,25 @@ export default function Avatar({ handleToggle, isModal, className }: IAvatar) {
     const bgColor = stringToHslColor(fullName)
 
     return (
-        <div
-        className={cn(
-            "w-10 h-10 rounded-full cursor-pointer flex items-center justify-center text-white font-medium",
-            { "w-20 h-20 text-4xl": isModal },
-            className
-          )}
-            style={{ backgroundColor: bgColor }}
-            onClick={handleToggle}
-        >
-            {initials}
-        </div>
+        <>
+            {
+                session.user.image ? <div onClick={handleToggle} className={cn('w-10 h-10 rounded-full overflow-hidden relative cursor-pointer flex items-center justify-center  font-medium', {
+                    "w-20 h-20 ": isModal
+                })}>
+                    <Image alt='avatar' fill src={session.user.image} priority sizes='48' className='object-cover' />
+                </div> : <div
+                    className={cn(
+                        "w-10 h-10 rounded-full cursor-pointer flex items-center justify-center text-white font-medium",
+                        { "w-20 h-20 text-4xl": isModal },
+                        className
+                    )}
+                    style={{ backgroundColor: bgColor }}
+                    onClick={handleToggle}
+                >
+                    {initials}
+                </div>
+            }
+
+        </>
     )
 }
