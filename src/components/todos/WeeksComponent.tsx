@@ -8,7 +8,7 @@ import { ChevronLeft, ChevronRight } from 'lucide-react'
 
 
 function getWeekDays(date: string, visibleDays: number) {
-    let weekDays = [];
+    const weekDays = [];
     const centerDate = new Date(date);
   
     const offset = Math.floor(visibleDays / 2);
